@@ -13,13 +13,14 @@ import vincent
 import pandas as pd
 from vincent import PropertySet, ValueRef
 
+import os
 import StringIO
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 
 from flask.ext.compress import Compress
 
-from flask.ext.cache import Cache
+# from flask.ext.cache import Cache
 
 app = Flask(__name__)
 app.config.from_pyfile('shakespeare.cfg')
@@ -45,14 +46,13 @@ print app.config['COMPRESS_MIMETYPES']
 # cache = Cache(app)
 
 
+# SQLite can be used instead of POstgreSQL
 # engine = create_engine('sqlite:////tmp/testdb.sqlite', convert_unicode=True)
-# db_host = 'localhost'
-# engine = create_engine('postgresql+pg8000://postgres:postgres@%s/shakespeare' % db_host,
-#         isolation_level="READ UNCOMMITTED", echo=False, convert_unicode=True)
 
-# Heroku
-engine = create_engine('postgresql+psycopg2://twatdaouxqiwmt:7fZe74DuLT_wOC_VYNLrrS3TtQ@ec2-54-225-127-246.compute-1.amazonaws.com:5432/dfuv4an6ct87dk',
-        isolation_level="READ UNCOMMITTED", echo=False, convert_unicode=True)
+# We need to change the URL to be SQLAlchemy-friendly
+db_url = os.environ['DATABASE_URL'].replace('postgres://', 'postgresql+psycopg2://')
+
+engine = create_engine(db_url, isolation_level="READ UNCOMMITTED", echo=False, convert_unicode=True)
 
 Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 mysession = scoped_session(Session)
