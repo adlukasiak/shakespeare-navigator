@@ -51,7 +51,7 @@ print app.config['COMPRESS_MIMETYPES']
 
 # We need to change the URL to be SQLAlchemy-friendly
 db_url = os.environ['DATABASE_URL'].replace('postgres://', 'postgresql+psycopg2://')
-
+print 'db_url', db_url
 engine = create_engine(db_url, isolation_level="READ UNCOMMITTED", echo=False, convert_unicode=True)
 
 Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
