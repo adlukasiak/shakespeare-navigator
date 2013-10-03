@@ -1,0 +1,15 @@
+{exec} = require 'child_process'
+
+coffeeFiles = [
+  'histogram.coffee',
+  'shakespeare.coffee'
+]
+
+task 'build', 'Build JavaScript files', ->
+  console.log 'Building...'
+
+  # exec "coffee --join app.js --output ../js/ --compile #{coffeeFiles.toString().replace(/,/g, ' ')}"
+  for coffeeFile in coffeeFiles
+    console.log coffeeFile
+    # exec "coffee --output ../js/ --compile #{coffeeFiles.toString().replace(/,/g, ' ')}"
+    exec "coffee --output ../js/ --compile #{coffeeFile}"

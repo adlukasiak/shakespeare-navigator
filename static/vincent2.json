@@ -1,0 +1,139 @@
+{
+  "legends": [],
+  "scales": [
+    {
+      "domain": {
+        "field": "data.work_id",
+        "data": "table"
+      },
+      "type": "ordinal",
+      "range": "width",
+      "name": "x"
+    },
+    {
+      "domain": {
+        "field": "data.total_words",
+        "data": "table"
+      },
+      "range": "height",
+      "name": "y",
+      "nice": true
+    }
+  ],
+  "height": 600,
+  "width": 800,
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "properties": {
+        "hover": {
+          "fill": {
+            "value": "red"
+          }
+        },
+        "update": {
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "enter": {
+          "y": {
+            "field": "data.total_words",
+            "scale": "y"
+          },
+          "width": {
+            "band": true,
+            "scale": "x",
+            "offset": -1
+          },
+          "y2": {
+            "scale": "y",
+            "value": 0
+          },
+          "x": {
+            "field": "data.work_id",
+            "scale": "x"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "table"
+      },
+      "properties": {
+        "hover": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 0
+          }
+        },
+        "enter": {
+          "baseline": {
+            "value": "bottom"
+          },
+          "text": {
+            "field": "data.long_title"
+          },
+          "align": {
+            "value": "center"
+          },
+          "dx": {
+            "value": 10
+          },
+          "dy": {
+            "value": -10
+          },
+          "y": {
+            "field": "data.total_words",
+            "scale": "y"
+          },
+          "x": {
+            "field": "data.work_id",
+            "scale": "x"
+          },
+          "fill": {
+            "value": "black"
+          }
+        }
+      }
+    }
+  ],
+  "axes": [
+    {
+      "titleOffset": 110,
+      "scale": "x",
+      "type": "x",
+      "properties": {
+        "labels": {
+          "align": {
+            "value": "left"
+          },
+          "angle": {
+            "value": 90
+          },
+          "baseline": {
+            "value": "middle"
+          }
+        }
+      },
+      "title": "Work"
+    },
+    {
+      "titleOffset": 60,
+      "scale": "y",
+      "type": "y",
+      "orient": "left",
+      "title": "Number or Words"
+    }
+  ],  
+  "data": [{"name": "table"}]
+}

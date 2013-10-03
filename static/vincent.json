@@ -1,0 +1,360 @@
+{
+  "legends": [],
+  "scales": [
+    {
+      "domain": {
+        "field": "data.idx",
+        "data": "table"
+      },
+      "type": "ordinal",
+      "range": "width",
+      "name": "x"
+    },
+    {
+      "domain": {
+        "field": "data.val",
+        "data": "table"
+      },
+      "range": "height",
+      "name": "y",
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "titleOffset": 110,
+      "scale": "x",
+      "type": "x",
+      "properties": {
+        "labels": {
+          "align": {
+            "value": "left"
+          },
+          "angle": {
+            "value": 90
+          },
+          "baseline": {
+            "value": "middle"
+          }
+        }
+      },
+      "title": "Work"
+    },
+    {
+      "titleOffset": 60,
+      "scale": "y",
+      "type": "y",
+      "orient": "left",
+      "title": "Number or Words"
+    }
+  ],
+  "height": 600,
+  "width": 800,
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "properties": {
+        "hover": {
+          "fill": {
+            "value": "red"
+          }
+        },
+        "update": {
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "enter": {
+          "y": {
+            "field": "data.val",
+            "scale": "y"
+          },
+          "width": {
+            "band": true,
+            "scale": "x",
+            "offset": -1
+          },
+          "y2": {
+            "scale": "y",
+            "value": 0
+          },
+          "x": {
+            "field": "data.idx",
+            "scale": "x"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "table"
+      },
+      "properties": {
+        "hover": {
+          "fillOpacity": {
+            "value": 1
+          }
+        },
+        "update": {
+          "fillOpacity": {
+            "value": 0
+          }
+        },
+        "enter": {
+          "baseline": {
+            "value": "bottom"
+          },
+          "text": {
+            "field": "data.val"
+          },
+          "align": {
+            "value": "center"
+          },
+          "dx": {
+            "value": 10
+          },
+          "dy": {
+            "value": -10
+          },
+          "y": {
+            "field": "data.val",
+            "scale": "y"
+          },
+          "x": {
+            "field": "data.idx",
+            "scale": "x"
+          },
+          "fill": {
+            "value": "black"
+          }
+        }
+      }
+    }
+  ],
+  "data": [
+    {
+      "values": [
+        {
+          "val": 14692,
+          "col": "total_words",
+          "idx": "comedyerrors"
+        },
+        {
+          "val": 25411,
+          "col": "total_words",
+          "idx": "henry6p2"
+        },
+        {
+          "val": 24284,
+          "col": "total_words",
+          "idx": "henry6p3"
+        },
+        {
+          "val": 21575,
+          "col": "total_words",
+          "idx": "henry6p1"
+        },
+        {
+          "val": 29278,
+          "col": "total_words",
+          "idx": "richard3"
+        },
+        {
+          "val": 21055,
+          "col": "total_words",
+          "idx": "tamingshrew"
+        },
+        {
+          "val": 20710,
+          "col": "total_words",
+          "idx": "titus"
+        },
+        {
+          "val": 9870,
+          "col": "total_words",
+          "idx": "venusadonis"
+        },
+        {
+          "val": 17129,
+          "col": "total_words",
+          "idx": "twogents"
+        },
+        {
+          "val": 15003,
+          "col": "total_words",
+          "idx": "rapelucrece"
+        },
+        {
+          "val": 21450,
+          "col": "total_words",
+          "idx": "loveslabours"
+        },
+        {
+          "val": 24553,
+          "col": "total_words",
+          "idx": "romeojuliet"
+        },
+        {
+          "val": 22411,
+          "col": "total_words",
+          "idx": "richard2"
+        },
+        {
+          "val": 16511,
+          "col": "total_words",
+          "idx": "midsummer"
+        },
+        {
+          "val": 21291,
+          "col": "total_words",
+          "idx": "merchantvenice"
+        },
+        {
+          "val": 20760,
+          "col": "total_words",
+          "idx": "kingjohn"
+        },
+        {
+          "val": 25692,
+          "col": "total_words",
+          "idx": "henry4p2"
+        },
+        {
+          "val": 24579,
+          "col": "total_words",
+          "idx": "henry4p1"
+        },
+        {
+          "val": 26119,
+          "col": "total_words",
+          "idx": "henry5"
+        },
+        {
+          "val": 21157,
+          "col": "total_words",
+          "idx": "muchado"
+        },
+        {
+          "val": 3124,
+          "col": "total_words",
+          "idx": "passionatepilgrim"
+        },
+        {
+          "val": 21690,
+          "col": "total_words",
+          "idx": "asyoulikeit"
+        },
+        {
+          "val": 19703,
+          "col": "total_words",
+          "idx": "juliuscaesar"
+        },
+        {
+          "val": 19837,
+          "col": "total_words",
+          "idx": "12night"
+        },
+        {
+          "val": 30558,
+          "col": "total_words",
+          "idx": "hamlet"
+        },
+        {
+          "val": 21845,
+          "col": "total_words",
+          "idx": "merrywives"
+        },
+        {
+          "val": 353,
+          "col": "total_words",
+          "idx": "phoenixturtle"
+        },
+        {
+          "val": 26089,
+          "col": "total_words",
+          "idx": "troilus"
+        },
+        {
+          "val": 22997,
+          "col": "total_words",
+          "idx": "allswell"
+        },
+        {
+          "val": 26450,
+          "col": "total_words",
+          "idx": "othello"
+        },
+        {
+          "val": 21773,
+          "col": "total_words",
+          "idx": "measure"
+        },
+        {
+          "val": 17121,
+          "col": "total_words",
+          "idx": "macbeth"
+        },
+        {
+          "val": 26119,
+          "col": "total_words",
+          "idx": "kinglear"
+        },
+        {
+          "val": 24905,
+          "col": "total_words",
+          "idx": "antonycleo"
+        },
+        {
+          "val": 18206,
+          "col": "total_words",
+          "idx": "timonathens"
+        },
+        {
+          "val": 27577,
+          "col": "total_words",
+          "idx": "coriolanus"
+        },
+        {
+          "val": 18529,
+          "col": "total_words",
+          "idx": "pericles"
+        },
+        {
+          "val": 27565,
+          "col": "total_words",
+          "idx": "cymbeline"
+        },
+        {
+          "val": 17515,
+          "col": "total_words",
+          "idx": "sonnets"
+        },
+        {
+          "val": 2559,
+          "col": "total_words",
+          "idx": "loverscomplaint"
+        },
+        {
+          "val": 24914,
+          "col": "total_words",
+          "idx": "winterstale"
+        },
+        {
+          "val": 16628,
+          "col": "total_words",
+          "idx": "tempest"
+        },
+        {
+          "val": 24629,
+          "col": "total_words",
+          "idx": "henry8"
+        }
+      ],
+      "name": "table"
+    }
+  ]
+}
