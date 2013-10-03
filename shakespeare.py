@@ -134,13 +134,14 @@ def histogram(work_id, extension):
         bar = vincent.Bar(df)
         # bar.axes.extend([vincent.Axis(type='y', scale='y'), vincent.Axis(type='x', scale='x')])
 
+        # FIXME this is probably caused by a new vincent API
         # props = vincent.AxisProperties(labels=ValueRef(value='left'))
-        props = vincent.AxisProperties(labels=PropertySet(
-                        align = ValueRef(value='left'),
-                        angle = ValueRef(value=90),
-                        baseline = ValueRef(value='middle')))
-
-        bar.axes[0].properties = props
+        # props = vincent.AxisProperties(labels=PropertySet(
+        #                 align = ValueRef(value='left'),
+        #                 angle = ValueRef(value=90),
+        #                 baseline = ValueRef(value='middle')))
+        # bar.axes[0].properties = props
+        
         bar.axes[0].title_offset = 40
         bar.height = 400
         bar.width = 500
