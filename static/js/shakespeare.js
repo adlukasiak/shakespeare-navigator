@@ -102,7 +102,7 @@
           }
         ];
         $.ajax({
-          url: 'http://localhost:5000/api/paragraph',
+          url: '/api/paragraph',
           data: {
             "q": JSON.stringify({
               "filters": filters
@@ -128,8 +128,8 @@
             return parse_details("static/vincent_details.json", data);
           }
         });
-        parse_details_2("http://localhost:5000/api/hist/" + work_id + ".json");
-        generate_png("http://localhost:5000/api/hist/" + work_id + ".svg");
+        parse_details_2("/api/hist/" + work_id + ".json");
+        generate_png("/api/hist/" + work_id + ".svg");
         return view.update({
           props: "update",
           items: item.cousin(1),
@@ -149,7 +149,7 @@
   ];
 
   $.ajax({
-    url: 'http://localhost:5000/api/work',
+    url: '/api/work',
     data: {
       "q": JSON.stringify({
         "order_by": order_by

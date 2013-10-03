@@ -8,7 +8,7 @@ memchached
 
 
 pip install Flask gunicorn
-psycopg2 sqlalchemy flask-restless flask-cake
+psycopg2 sqlalchemy flask-restless flask-cake numpy vincent matplotlib flask-compress flask-cache
 
 Procfile is used for dispatching Heroku dynos
 

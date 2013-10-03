@@ -88,7 +88,8 @@ parse_works = (spec, data) ->
       ]
 
       $.ajax
-        url: 'http://localhost:5000/api/paragraph'
+        # url: 'http://localhost:5000/api/paragraph'
+        url: '/api/paragraph'
         data: {"q": JSON.stringify({"filters": filters})}
         dataType: "json"
         contentType: "application/json"
@@ -99,8 +100,10 @@ parse_works = (spec, data) ->
 
           parse_details("static/vincent_details.json", data)
           
-      parse_details_2("http://localhost:5000/api/hist/#{work_id}.json")
-      generate_png("http://localhost:5000/api/hist/#{work_id}.svg")
+      # parse_details_2("http://localhost:5000/api/hist/#{work_id}.json")
+      parse_details_2("/api/hist/#{work_id}.json")
+      # generate_png("http://localhost:5000/api/hist/#{work_id}.svg")
+      generate_png("/api/hist/#{work_id}.svg")
 
       view.update
         props: "update"
@@ -117,7 +120,8 @@ order_by = [
 ]
 
 $.ajax
-  url: 'http://localhost:5000/api/work'
+  # url: 'http://localhost:5000/api/work'
+  url: '/api/work'
   data: {"q": JSON.stringify({"order_by": order_by})}
   dataType: "json"
   contentType: "application/json"
