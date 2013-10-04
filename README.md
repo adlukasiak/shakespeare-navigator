@@ -82,9 +82,12 @@ The pgAdminIII GUI frontend can be used to view the Heroku Postgres database jus
 The shakespeare database contains 67,895 rows, exceeding the Heroku free Dev plan limit of 10,000. INSERT privileges to the database will be automatically revoked at some point. This will cause service failures in most applications dependent on this database.
 
 
+---
 
 Buildpacks (https://devcenter.heroku.com/articles/buildpacks)
 
-http://victorquinn.com/blog/2013/08/10/deploy-coffeescript-node-app-to-heroku/
-https://github.com/aergonaut/heroku-buildpack-coffeescript
-Installed this https://github.com/fivethreeo/heroku-buildpack-python-nodejs
+https://github.com/ddollar/heroku-buildpack-multi
+
+.builpacks holds the buidpacks used
+https://github.com/dbrgn/heroku-buildpack-python-sklearn
+https://github.com/fivethreeo/heroku-buildpack-python-nodejs
