@@ -1,0 +1,93 @@
+{
+  "legends": [],
+  "scales": [
+    {
+      "domain": {
+        "field": "data.paragraph_num",
+        "data": "table"
+      },
+      "type": "ordinal",
+      "range": "width",
+      "name": "x"
+    },
+    {
+      "domain": {
+        "field": "data.word_count",
+        "data": "table"
+      },
+      "range": "height",
+      "name": "y",
+      "nice": true
+    }
+  ],
+  "height": 400,
+  "width": 500,
+  "marks": [
+    {
+      "type": "rect",
+      "from": {
+        "data": "table"
+      },
+      "properties": {
+        "hover": {
+          "fill": {
+            "value": "red"
+          }
+        },
+        "update": {
+          "fill": {
+            "value": "steelblue"
+          }
+        },
+        "enter": {
+          "y": {
+            "field": "data.word_count",
+            "scale": "y"
+          },
+          "width": {
+            "band": true,
+            "scale": "x",
+            "offset": -1
+          },
+          "y2": {
+            "scale": "y",
+            "value": 0
+          },
+          "x": {
+            "field": "data.paragraph_num",
+            "scale": "x"
+          }
+        }
+      }
+    }
+  ],
+  "axes": [
+    {
+      "titleOffset": 110,
+      "scale": "x",
+      "type": "x",
+      "properties": {
+        "labels": {
+          "align": {
+            "value": "left"
+          },
+          "angle": {
+            "value": 90
+          },
+          "baseline": {
+            "value": "middle"
+          }
+        }
+      },
+      "title": "Words in Paragraph"
+    },
+    {
+      "titleOffset": 60,
+      "scale": "y",
+      "type": "y",
+      "orient": "left",
+      "title": "Frequency"
+    }
+  ],  
+  "data": [{"name": "table"}]
+}
