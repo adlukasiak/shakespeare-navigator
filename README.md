@@ -88,5 +88,3 @@ Buildpacks (https://devcenter.heroku.com/articles/buildpacks)
 http://victorquinn.com/blog/2013/08/10/deploy-coffeescript-node-app-to-heroku/
 https://github.com/aergonaut/heroku-buildpack-coffeescript
 Installed this https://github.com/fivethreeo/heroku-buildpack-python-nodejs
-
-
