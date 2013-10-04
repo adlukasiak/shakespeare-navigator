@@ -5,12 +5,10 @@ This project is meant to be a starting point to hack around with various web bac
 Some of the technologies used here are:
 
 * coffescript (used instead of JavaScript for client-side development)
-<<<<<<< HEAD
+
 * d3.js for JavaScript visualizations
 * matplotlib for server-side rendering
 * vincent/vega for visualizations that start as pandas DataFrames and get rendered using JavaScript
-=======
->>>>>>> dfe971e111c1af19df73f8aee028e60c99340b51
 * Flask web microframework
 * SQLAlchemy ORM for access to a Postgres database
 * REST APIs (via Flask-Restless)
@@ -29,8 +27,6 @@ First, clone this repo:
 
     git clone ...
 
-<<<<<<< HEAD
-
 Development on Debian/Ubuntu allows access to the apt-get system. Alternative software management systems exists for other environments. Use apt-get to install these packages:
 * postgresql
 * python-pip
@@ -43,13 +39,6 @@ Use virtualenv to create an isolated Python environment, and activate it before 
     pip install virtualenv (if it doesn't exist on your system) 
     virtualenv venv
     source venv/bin/activate
-=======
-I'm using Ubuntu, which has the apt-get system. Alternative software management systems exists for other environments. Use apt-get to install these packages:
-* postgresql
-* memchached
-
-Use virtualenv to create an isolated Python environment, and activate it before installing any Python packages. 
->>>>>>> dfe971e111c1af19df73f8aee028e60c99340b51
 
 There are a number of Python packages needed to run this web app. Use pip to install these packages:
 
@@ -57,7 +46,6 @@ There are a number of Python packages needed to run this web app. Use pip to ins
 
 ## Running
 
-<<<<<<< HEAD
     export DATABASE_URL=postgres://postgres:postgres@localhost/shakespeare
     python shakespeare.py 
 
@@ -81,34 +69,10 @@ Deploying the latest matplotlib on Heroku (as of the time this document was writ
 
     https://github.com/dbrgn/heroku-buildpack-python-sklearn
     https://github.com/fivethreeo/heroku-buildpack-python-nodejs
-=======
-    python shakespeare.py 
-
-### Heroku Deployment
-
-Follow these tutorials (https://devcenter.heroku.com/articles/quickstart) to get hands-on experience first.
-
-There are a few Heroku-specific files in the repo.
-* Procfile is used for dispatching Heroku dynos
-* requirements.txt is a list of pip-installable Python packages required to run the app. Use the following command to 
-    pip freeze > requirements.txt
-
-Deploying the latest matplotlib on Heroku (as of the time this document was written) is a little tricky. I followed the directions outlined here (http://stackoverflow.com/questions/18173104/deploy-matplotlib-on-heroku-failed-how-to-do-this-correctly)
-
-Install an sklearn buildpack with this command
-
-    heroku config:set BUILDPACK_URL=https://github.com/dbrgn/heroku-buildpack-python-sklearn/
->>>>>>> dfe971e111c1af19df73f8aee028e60c99340b51
 
 In requirements.txt, the matplotlib version was specified explicitly
 
     matplotlib==1.1.0
-
-<<<<<<< HEAD
-=======
-There Heroku add-ons that provide a service similar to memcached. However, for the time being, the Flask-Cache capability is disabled when deployed on Heroku.
-
->>>>>>> dfe971e111c1af19df73f8aee028e60c99340b51
 
 ### Heroku Postgres (postgres.heroku.com)
 
@@ -131,17 +95,4 @@ pgbackups:restore (https://devcenter.heroku.com/articles/heroku-postgres-import-
 The pgAdminIII GUI frontend can be used to view the Heroku Postgres database just as easily as connecting to a local database. Follow http://stackoverflow.com/questions/11769860/connect-to-a-heroku-database-with-pgadmin for some tips on the setup.
 
 The shakespeare database contains 67,895 rows, exceeding the Heroku free Dev plan limit of 10,000. INSERT privileges to the database will be automatically revoked at some point. This will cause service failures in most applications dependent on this database.
-<<<<<<< HEAD
-=======
 
-
----
-
-Buildpacks (https://devcenter.heroku.com/articles/buildpacks)
-
-https://github.com/ddollar/heroku-buildpack-multi
-
-.builpacks holds the buidpacks used
-https://github.com/dbrgn/heroku-buildpack-python-sklearn
-https://github.com/fivethreeo/heroku-buildpack-python-nodejs
->>>>>>> dfe971e111c1af19df73f8aee028e60c99340b51
