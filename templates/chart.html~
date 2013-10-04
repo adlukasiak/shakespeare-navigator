@@ -31,7 +31,7 @@
 
     <div class="row-fluid">
       <div class="span6" id="vis_details_3">
-        <p><strong>Histogram of Word Distribution By Paragraph (histogram and SVG rendered on server)</strong></p>
+        <p><strong>Histogram of Word Distribution By Paragraph (histogram and SVGs rendered on server)</strong></p>
         <p>Click on a work to get a word distribution by paragraph</p>
         <img src=""></img>
       </div>
