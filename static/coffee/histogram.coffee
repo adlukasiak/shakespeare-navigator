@@ -36,7 +36,7 @@
 
 
 
-histogram = (data, numBins=10) ->
+histogram = (data, numBins=20) ->
   max = Math.max.apply(Math, data)
   min = Math.min.apply(Math, data)
   range = max - min;
