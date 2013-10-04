@@ -26,13 +26,19 @@ First, clone this repo:
 
     git clone ...
 
+
 Development on Debian/Ubuntu allows access to the apt-get system. Alternative software management systems exists for other environments. Use apt-get to install these packages:
 * postgresql
+* python-pip
 
 Set up a local Postgres database with the following settings: postgres:postgres@localhost/shakespeare.
 Populate the shakespeare database with the data from the OpenShakespeare site (https://github.com/catherinedevlin/opensourceshakespeare). TODO: This section needs more details
 
-Use virtualenv to create an isolated Python environment, and activate it before installing any Python packages. TODO: This section needs more details
+Use virtualenv to create an isolated Python environment, and activate it before installing any Python packages.
+    
+    pip install virtualenv (if it doesn't exist on your system) 
+    virtualenv venv
+    source venv/bin/activate
 
 There are a number of Python packages needed to run this web app. Use pip to install these packages:
 
@@ -43,6 +49,8 @@ There are a number of Python packages needed to run this web app. Use pip to ins
     export DATABASE_URL=postgres://postgres:postgres@localhost/shakespeare
     python shakespeare.py 
 
+Now check your browser at localhost:5000
+
 ### Heroku Deployment
 
 Follow these tutorials (https://devcenter.heroku.com/articles/quickstart) to get hands-on experience first. 
@@ -51,14 +59,13 @@ There are a few Heroku-specific files in the repo.
 * Procfile is used for dispatching Heroku dynos
 * requirements.txt is a list of pip-installable Python packages required to run the app
 
+To run the app locally in the Heroku framework, use foreman
+
+    foreman start
 
 #### Notes
 
-Deploying the latest matplotlib on Heroku (as of the time this document was written) is a little tricky. I followed the directions outlined here (http://stackoverflow.com/questions/18173104/deploy-matplotlib-on-heroku-failed-how-to-do-this-correctly)
-
-This calls for using a python-sklearn buildpack. Buildpacks are explained here: (https://devcenter.heroku.com/articles/buildpacks)
-
-However, the cake and coffee binaries are needed to compile CoffeeScript to JavaScript, so the multi-buildpack was used (https://github.com/ddollar/heroku-buildpack-multi). The contents of the .buildfile are
+Deploying the latest matplotlib on Heroku (as of the time this document was written) is a little tricky. Some hints are outlined here (http://stackoverflow.com/questions/18173104/deploy-matplotlib-on-heroku-failed-how-to-do-this-correctly). This article calls for using a python-sklearn buildpack. Buildpacks are explained here: (https://devcenter.heroku.com/articles/buildpacks). However, the cake and coffee binaries are needed to compile CoffeeScript to JavaScript, so the multi-buildpack was used (https://github.com/ddollar/heroku-buildpack-multi). The contents of the .buildfile are
 
     https://github.com/dbrgn/heroku-buildpack-python-sklearn
     https://github.com/fivethreeo/heroku-buildpack-python-nodejs
