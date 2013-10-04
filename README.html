@@ -1,0 +1,176 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+
+body{
+  color:#444;
+  font-family:Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman',
+              "Hiragino Sans GB", "STXihei", "微软雅黑", serif;
+  font-size:12px;
+  line-height:1.5em;
+  background:#fefefe;
+  width: 45em;
+  margin: 10px auto;
+  padding: 1em;
+  outline: 1300px solid #FAFAFA;
+}
+
+a{ color: #0645ad; text-decoration:none;}
+a:visited{ color: #0b0080; }
+a:hover{ color: #06e; }
+a:active{ color:#faa700; }
+a:focus{ outline: thin dotted; }
+a:hover, a:active{ outline: 0; }
+
+span.backtick {
+  border:1px solid #EAEAEA;
+  border-radius:3px;
+  background:#F8F8F8;
+  padding:0 3px 0 3px;
+}
+
+::-moz-selection{background:rgba(255,255,0,0.3);color:#000}
+::selection{background:rgba(255,255,0,0.3);color:#000}
+
+a::-moz-selection{background:rgba(255,255,0,0.3);color:#0645ad}
+a::selection{background:rgba(255,255,0,0.3);color:#0645ad}
+
+p{
+margin:1em 0;
+}
+
+img{
+max-width:100%;
+}
+
+h1,h2,h3,h4,h5,h6{
+font-weight:normal;
+color:#111;
+line-height:1em;
+}
+h4,h5,h6{ font-weight: bold; }
+h1{ font-size:2.5em; }
+h2{ font-size:2em; border-bottom:1px solid silver; padding-bottom: 5px; }
+h3{ font-size:1.5em; }
+h4{ font-size:1.2em; }
+h5{ font-size:1em; }
+h6{ font-size:0.9em; }
+
+blockquote{
+color:#666666;
+margin:0;
+padding-left: 3em;
+border-left: 0.5em #EEE solid;
+}
+hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
+
+
+pre , code, kbd, samp { 
+  color: #000; 
+  font-family: monospace; 
+  font-size: 0.88em; 
+  border-radius:3px;
+  background-color: #F8F8F8;
+  border: 1px solid #CCC; 
+}
+pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 5px 12px;}
+pre code { border: 0px !important; padding: 0;}
+code { padding: 0 3px 0 3px; }
+
+b, strong { font-weight: bold; }
+
+dfn { font-style: italic; }
+
+ins { background: #ff9; color: #000; text-decoration: none; }
+
+mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
+
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+ul, ol { margin: 1em 0; padding: 0 0 0 2em; }
+li p:last-child { margin:0 }
+dd { margin: 0 0 0 2em; }
+
+img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+td { vertical-align: top; }
+
+@media only screen and (min-width: 480px) {
+body{font-size:14px;}
+}
+
+@media only screen and (min-width: 768px) {
+body{font-size:16px;}
+}
+
+@media print {
+  * { background: transparent !important; color: black !important; filter:none !important; -ms-filter: none !important; }
+  body{font-size:12pt; max-width:100%; outline:none;}
+  a, a:visited { text-decoration: underline; }
+  hr { height: 1px; border:0; border-bottom:1px solid black; }
+  a[href]:after { content: " (" attr(href) ")"; }
+  abbr[title]:after { content: " (" attr(title) ")"; }
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }
+  pre, blockquote { border: 1px solid #999; padding-right: 1em; page-break-inside: avoid; }
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page :left { margin: 15mm 20mm 15mm 10mm; }
+  @page :right { margin: 15mm 10mm 15mm 20mm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3 { page-break-after: avoid; }
+}
+</style><title>README</title></head><body><h1 id="shakespeare-navigator">Shakespeare Navigator</h1>
+<p>This project is meant to be a starting point to hack around with various web backend and frontend tools that enable interactive visualization of information from a relational database.</p>
+<p>Some of the technologies used here are:</p>
+<ul>
+<li>coffescript (used instead of JavaScript for client-side development)</li>
+<li>Flask web microframework</li>
+<li>SQLAlchemy ORM for access to a Postgres database</li>
+<li>REST APIs (via Flask-Restless)</li>
+<li>Heroku (a PaaS for deployment)</li>
+<li>Heroku Postgres (a cloud-based Postgres service)</li>
+</ul>
+<p>In this project, the source of the data is: (https://github.com/catherinedevlin/opensourceshakespeare). It's based on the Open Source Shakespeare site (http://www.opensourceshakespeare.org/) which a collection of Shakespeare's complete works.</p>
+<h3 id="local-installation">Local Installation</h3>
+<h2 id="installing">Installing</h2>
+<p>First, clone this repo:</p>
+<pre><code>...
+</code></pre>
+<p>I'm using Ubuntu, which has the apt-get system. Alternative software management systems exists for other environments. Use apt-get to install these packages:
+<em> postgresql
+</em> memchached</p>
+<p>Use virtualenv to create an isolated Python environment, and activate it before installing any Python packages. </p>
+<p>There are a number of Python packages needed to run this web app. Use pip to install these packages:</p>
+<pre><code>pip install -r ./requirements.txt
+</code></pre>
+<h2 id="running">Running</h2>
+<pre><code>python shakespeare.py
+</code></pre>
+<h3 id="heroku-deployment">Heroku Deployment</h3>
+<p>Follow these tutorials (https://devcenter.heroku.com/articles/quickstart) to get hands-on experience first.</p>
+<p>There are a few Heroku-specific files in the repo.
+<em> Procfile is used for dispatching Heroku dynos
+</em> requirements.txt is a list of pip-installable Python packages required to run the app. Use the following command to 
+    pip freeze &gt; requirements.txt</p>
+<p>Deploying the latest matplotlib on Heroku (as of the time this document was written) is a little tricky. I followed the directions outlined here (http://stackoverflow.com/questions/18173104/deploy-matplotlib-on-heroku-failed-how-to-do-this-correctly)</p>
+<p>Install an sklearn buildpack with this command</p>
+<pre><code>heroku config:set BUILDPACK_URL=https://github.com/dbrgn/heroku-buildpack-python-sklearn/
+</code></pre>
+<p>In requirements.txt, the matplotlib version was specified explicitly</p>
+<pre><code>matplotlib==1.1.0
+</code></pre>
+<p>There Heroku add-ons that provide a service similar to memcached. However, for the time being, the Flask-Cache capability is disabled when deployed on Heroku.</p>
+<h3 id="heroku-postgres-postgresherokucom">Heroku Postgres (postgres.heroku.com)</h3>
+<p>Heroku Postgres is a service that allows for running a cloud-based Postgres server. Follow the Heroku devcenter article (https://devcenter.heroku.com/articles/heroku-postgresql) to get familiar with the service.  You can start with a local Postgres database, and then migrate to an online Heroku Postgres database.  There are a couple of documented ways to transmit a local database to a Heroku Postgres database. </p>
+<h4 id="pgpush-and-pgpull">pg:push and pg:pull</h4>
+<p>An article on the Heroku devcenter (https://devcenter.heroku.com/articles/heroku-postgresql#local-setup) suggests using pg:push and 
+pg:pull</p>
+<p>However, pg:push and pg:pull (https://github.com/heroku/heroku-pg-extras) have been reported to be stubborn (e.g. http://stackoverflow.com/questions/11126652/heroku-dbpush-problems)</p>
+<h4 id="pgtransfer">pg:transfer</h4>
+<p>Following this article (http://www.higherorderheroku.com/articles/pgtransfer-is-the-new-taps/) has worked for me.</p>
+<h4 id="pgbackupsrestore">pgbackups:restore</h4>
+<p>pgbackups:restore (https://devcenter.heroku.com/articles/heroku-postgres-import-export#import) seems to be the new recommended way of importing a local database into Heroku Postgres.  However, it requires the database to be available at an HTTP-accessible URL like S3.</p>
+<h4 id="other-notes">Other notes</h4>
+<p>The pgAdminIII GUI frontend can be used to view the Heroku Postgres database just as easily as connecting to a local database. Follow http://stackoverflow.com/questions/11769860/connect-to-a-heroku-database-with-pgadmin for some tips on the setup.</p>
+<p>The shakespeare database contains 67,895 rows, exceeding the Heroku free Dev plan limit of 10,000. INSERT privileges to the database will be automatically revoked at some point. This will cause service failures in most applications dependent on this database.</p></body></html>
