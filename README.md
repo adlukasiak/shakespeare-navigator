@@ -80,3 +80,12 @@ pgbackups:restore (https://devcenter.heroku.com/articles/heroku-postgres-import-
 The pgAdminIII GUI frontend can be used to view the Heroku Postgres database just as easily as connecting to a local database. Follow http://stackoverflow.com/questions/11769860/connect-to-a-heroku-database-with-pgadmin for some tips on the setup.
 
 The shakespeare database contains 67,895 rows, exceeding the Heroku free Dev plan limit of 10,000. INSERT privileges to the database will be automatically revoked at some point. This will cause service failures in most applications dependent on this database.
+
+
+
+Buildpacks (https://devcenter.heroku.com/articles/buildpacks)
+
+http://victorquinn.com/blog/2013/08/10/deploy-coffeescript-node-app-to-heroku/
+https://github.com/aergonaut/heroku-buildpack-coffeescript
+Installed this https://github.com/fivethreeo/heroku-buildpack-python-nodejs
+
