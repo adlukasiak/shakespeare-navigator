@@ -1,6 +1,6 @@
 # Shakespeare Navigator
 
-This project is meant to be a starting point to hack around with various web backend and frontend tools that enable interactive visualization of information from a relational database.
+This project is a demonstration of several web backend and frontend tools that enable interactive visualization of information from a relational database.  The data set used for this demonstration is a collection of Shakespeare's complete works, sourced from http://www.opensourceshakespeare.org/.
 
 Some of the technologies used here are:
 
@@ -15,24 +15,47 @@ Some of the technologies used here are:
 * Heroku (a PaaS for deployment)
 * Heroku Postgres (a cloud-based Postgres service)
 
+## Local Installation
 
-In this project, the source of the data is: (https://github.com/catherinedevlin/opensourceshakespeare). It's based on the Open Source Shakespeare site (http://www.opensourceshakespeare.org/) which a collection of Shakespeare's complete works.
+### Clone github projects
 
+First, clone opensourceshakespeare and shakespeare-navigator repo:
 
-### Local Installation
+    git clone https://github.com/tlukasiak/shakespeare-navigator
+    git clone https://github.com/catherinedevlin/opensourceshakespeare
 
-## Installing
-
-First, clone this repo:
-
-    git clone ...
-
+### Postgres
+#### Postgres on Debian/Ubuntu
 Development on Debian/Ubuntu allows access to the apt-get system. Alternative software management systems exists for other environments. Use apt-get to install these packages:
 * postgresql
 * python-pip
 
 Set up a local Postgres database with the following settings: postgres:postgres@localhost/shakespeare.
-Populate the shakespeare database with the data from the OpenShakespeare site (https://github.com/catherinedevlin/opensourceshakespeare). TODO: This section needs more details
+
+#### Postgres on Mac OS X:
+
+To install Postgres on Mac OS X, follow [installation instructions](http://postgresapp.com/).
+
+Setup a local Postgres databse and load with data from the [OpenShakespeare site](https://github.com/catherinedevlin/opensourceshakespeare):
+
+Connect with `psql` to create a new database
+
+````
+CREATE DATABASE shakespeare;
+````
+
+Load the data by running on command line
+
+````
+psql shakespeare < opensourceshakespeare/shakespeare.sql
+````
+
+##### Note
+The owner in the shakespeare.sql is 'catherine' and 'postgres'.  Replace 'catherine' and 'postgres' with your own group role in the shakespeare.sql before loading the data.
+
+### Create isolated Python environment
+
+#### Create isolated environment on Debian/Ubuntu
 
 Use virtualenv to create an isolated Python environment, and activate it before installing any Python packages.
     
@@ -44,14 +67,133 @@ There are a number of Python packages needed to run this web app. Use pip to ins
 
     pip install -r ./requirements.txt
 
-## Running
+#### Create isolated environment on Mac OS X:
+
+    conda install -n venv pip
+    source $HOME/anaconda/bin/activate ~/anaconda/envs/venv/
+
+There are a number of Python packages needed to run this web app. Use pip to install these packages:
+
+    pip install -r ./requirements.txt
+
+During the matplotlib installation you may be asked to install X11.  In OS X Mountain Lion (10.8), X11 is no longer installed by default, and you need to install [XQuartz](support.apple.com/kb/HT5293).
+
+If the matplotlib installation failes with this error about freetype2 and libpng:
+
+
+````
+BUILDING MATPLOTLIB
+                matplotlib: 1.1.0
+                    python: 2.7.5 |Continuum Analytics, Inc.| (default, Jun 28
+                            2013, 22:20:13)  [GCC 4.0.1 (Apple Inc. build 5493)]
+                  platform: darwin
+    
+    REQUIRED DEPENDENCIES
+                     numpy: 1.7.1
+                 freetype2: found, but unknown version (no pkg-config)
+                            * WARNING: Could not find 'freetype2' headers in any
+                            * of '.', './freetype2'.
+    
+    OPTIONAL BACKEND DEPENDENCIES
+                    libpng: found, but unknown version (no pkg-config)
+                            * Could not find 'libpng' headers in any of '.'
+````
+
+it's because freetype and libpng are installed in non-canonical locations by XCode, in /usr/X11 instead of /usr or /usr/local.  To address it, install pkg-config:
+
+    brew install pkg-config
+
+Export PKG_CONFIG_PATH to pickup the correct dependencies (libpng, freetype) from XQuartz via pkg-config:
+
+    export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig
+
+Try to install matplotlib again
+
+    pip install matplotlib==1.1.0 
+
+#### Installing and Compiling Coffee Script
+
+Install Node.js from http://nodejs.org/ and coffee compiler from http://coffeescript.org/.  Once you have installed the node.js, you can use nmp to install coffee script:
+````
+npm install -g coffee-script
+````
+To create .js files, compile your coffee script.  Copy the .js file into ../js:
+````
+coffee -c /path/to/histogram.coffee
+coffee -c /path/to/shakespeare.coffee
+cp histogram.js shakespeare.js ../js
+````
+
+## Running Web Server Locally
+
+In your virutal environment:
 
     export DATABASE_URL=postgres://postgres:postgres@localhost/shakespeare
     python shakespeare.py 
 
 Now check your browser at localhost:5000
 
-### Heroku Deployment
+    http://localhost:5000
+
+#### Common runtime issues on Mac OS X
+
+If you can't load any of the Postgres libraries, set DYLD_LIBRARY_PATH environment variable:
+
+    export DYLD_LIBRARY_PATH=/Applications/Postgres.app/Contents/MacOS/lib
+
+Depending on how Postgres was intalled, you may need to create postgres role:
+
+    > psql shakespeare
+    psql (9.3.0)
+    Type "help" for help.
+
+    alukasiak=# create role postgres;
+    CREATE ROLE
+    alukasiak=# \q
+
+ If you have issues with symbolic links, follow [those instructions](https://lists.macosforge.org/pipermail/macports-users/2010-November/022663.html):
+````
+dyld: Symbol not found: __cg_jpeg_resync_to_restart
+  Referenced from: /System/Library/Frameworks/ImageIO.framework/Versions/A/ImageIO
+  Expected in: /Applications/Postgres.app/Contents/MacOS/lib/libJPEG.dylib
+ in /System/Library/Frameworks/ImageIO.framework/Versions/A/ImageIO
+````
+````
+ > ls -ltr
+rwxr-xr-x@ 1 alukasiak  staff  15 Oct  8 22:09 /Applications/Postgres.app/Contents/MacOS/lib/libJPEG.dylib -> libjpeg.8.dylib
+> nm -g libJPEG.dylib | grep resync
+0000000000026270 T _jpeg_resync_to_restart
+
+> sudo ln -sf /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/ImageIO.framework/Versions/A/Resources/libJPEG.dylib /Applications/Postgres.app/Contents/MacOS/lib/libJPEG.dylib
+
+> nm -g /Applications/Postgres.app/Contents/MacOS/lib/libJPEG.dylib | grep resync
+0000000000018060 T __cg_jpeg_resync_to_restart
+````
+
+ If you need to find where the logs for postgres are:
+
+````
+    SELECT 
+        * 
+    FROM 
+        pg_settings 
+    WHERE 
+        category IN( 'Reporting and Logging / Where to Log' , 'File Locations')
+    ORDER BY 
+        category,
+        name;
+````
+
+If you are getting this error when trying to connect to postgress:
+````
+    ERROR:  permission denied for relation work
+````
+you will need to add permissions for all tables to postgres.  You can do it from psql -U YOURADMIN_LOGIN shakespeare:
+````
+    GRANT SELECT ON ALL TABLES IN SCHEMA public TO postgres
+````
+
+## Heroku Deployment
 
 Follow these tutorials (https://devcenter.heroku.com/articles/quickstart) to get hands-on experience first. 
 
