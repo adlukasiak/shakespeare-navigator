@@ -11,7 +11,7 @@ from flask_cake import Cake
 import numpy as np
 import vincent
 import pandas as pd
-from vincent import PropertySet, ValueRef
+from vincent import PropertySet, ValueRef, AxisProperties
 
 import os
 import StringIO
@@ -137,21 +137,27 @@ def histogram(work_id, extension):
         # bar.axes.extend([vincent.Axis(type='y', scale='y'), vincent.Axis(type='x', scale='x')])
 
         # FIXME this is probably caused by a new vincent API
-        # props = vincent.AxisProperties(labels=ValueRef(value='left'))
-        # props = vincent.AxisProperties(labels=PropertySet(
-        #                 align = ValueRef(value='left'),
-        #                 angle = ValueRef(value=90),
-        #                 baseline = ValueRef(value='middle')))
-        # bar.axes[0].properties = props
-        
+	# vincent 0.3.0 works great!
+        #props = vincent.AxisProperties(labels=ValueRef(value='left'))
+        props = vincent.AxisProperties(labels=PropertySet(
+                         align = ValueRef(value='left'),
+                         angle = ValueRef(value=90),
+                         baseline = ValueRef(value='middle'),
+                         font_size = ValueRef(value=9)))
+        bar.axes[0].properties = props
+
+	bar.axes[1].properties = vincent.AxisProperties(labels=PropertySet(font_size = ValueRef(value=9)))
+      
+	bar.axes[1].title_offset = 40
         bar.axes[0].title_offset = 40
-        bar.height = 400
-        bar.width = 500
+	bar.axes[0].format = ".0f"
+        bar.height = 150
+        bar.width = 170
       # "height": 400,
       # "width": 500,
 
-        print 'bar.axes[0]', bar.axes[0].title_offset
         bar.axis_titles(x='Bins', y='Frequency')
+	#bar.axes.extend([Axis(type='x', ), Axis(type='y', )])
 
         j = bar.to_json()
         # return the histogram of word frequency per paragraph for a given work_id 
@@ -164,7 +170,7 @@ def histogram(work_id, extension):
 
         fig = Figure(figsize = (8, 6))
         axis = fig.add_subplot(1, 1, 1)
-     
+        
         axis.hist(word_counts, bins=20)
         # axis = df.hist()
         canvas = FigureCanvas(fig)
@@ -178,7 +184,8 @@ def histogram(work_id, extension):
 
         fig = Figure(figsize = (8, 6))
         axis = fig.add_subplot(1, 1, 1)
-     
+        axis.set_ylabel("Frequency")
+        axis.set_xlabel("Bins")
         axis.hist(word_counts, bins=20)
         # axis = df.hist()
         canvas = FigureCanvas(fig)
