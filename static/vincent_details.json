@@ -20,8 +20,8 @@
       "nice": true
     }
   ],
-  "height": 400,
-  "width": 500,
+  "height": 150,
+  "width": 170,
   "marks": [
     {
       "type": "rect",
@@ -63,7 +63,7 @@
   ],
   "axes": [
     {
-      "titleOffset": 110,
+      "titleOffset": 40,
       "scale": "x",
       "type": "x",
       "properties": {
@@ -76,17 +76,28 @@
           },
           "baseline": {
             "value": "middle"
+          },
+          "fontSize": {
+            "value": 9
           }
         }
       },
-      "title": "Words in Paragraph"
+      "format": ".0f",
+      "title": "Bins"
     },
     {
-      "titleOffset": 60,
+      "titleOffset": 40,
       "scale": "y",
       "type": "y",
       "orient": "left",
-      "title": "Frequency"
+      "title": "Frequency",
+      "properties": {
+        "labels": {
+          "fontSize": {
+            "value": 9
+          }
+        }
+      }
     }
   ],  
   "data": [{"name": "table"}]
