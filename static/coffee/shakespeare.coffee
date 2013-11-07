@@ -42,6 +42,22 @@ parse_details_2 = (spec) ->
         items: item
     .update()
 
+# parse a spec and create a visualization view
+parse_details_4 = (data) ->  
+  console.log "parse_details_4"
+  svg = dimple.newSvg("#vis_details_4",300,400)
+  myChart = new dimple.chart(svg, data)
+  myChart.setBounds(52, 10, 170, 148)
+  x = myChart.addCategoryAxis("x", "paragraph_num")
+  y = myChart.addMeasureAxis("y", "word_count")
+  x.addOrderRule("paragraph_num");
+  myChart.addSeries(null, dimple.plot.bar)
+  x.tickFormat = d3.format ".0f"
+  myChart.draw()
+  x.titleShape.text "Bins"
+  y.titleShape.text "Frequency"
+
+
 
 # parse a spec and create a visualization view
 generate_png = (spec) ->  
@@ -57,7 +73,6 @@ generate_png = (spec) ->
 
 # parse a spec and create a visualization view
 parse_works = (spec, data) ->
-   
   vg.parse.spec spec, (chart) -> 
     view = chart
       el: "#vis_works"
@@ -94,16 +109,24 @@ parse_works = (spec, data) ->
         dataType: "json"
         contentType: "application/json"
         success: (data) ->
+          console.log "data in callback is " , data
           d = (obj.word_count for obj in data.objects)  
           data = 
             table: utils.histogram_(d)
-
+          data2 = 
+            utils.histogram_(d)
           parse_details("static/vincent_details.json", data)
-          
+          #Solution 1: use created on the client histogram but convert to simple json table
+          parse_details_4(data2)
+
       # parse_details_2("http://localhost:5000/api/hist/#{work_id}.json")
       parse_details_2("/api/hist/#{work_id}.json")
       # generate_png("http://localhost:5000/api/hist/#{work_id}.svg")
       generate_png("/api/hist/#{work_id}.svg")
+      #Solution 2: create histogram on the server with tsv
+      #parse_details_4("/api/hist/#{work_id}.tsv")
+      #Solution 3: create histogram on the server with simple json table
+      #parse_details_4("/api/hist/#{work_id}_simple_json.json")
 
       view.update
         props: "update"
